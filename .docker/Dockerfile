@@ -54,6 +54,9 @@ RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 RUN php81 composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN rm -rf composer-setup.php
 
+# Installing Node.js and npm
+RUN apk --no-cache add nodejs npm
+
 # Configure supervisor
 RUN mkdir -p /etc/supervisor.d/
 COPY ./supervisord.ini /etc/supervisor.d/supervisord.ini

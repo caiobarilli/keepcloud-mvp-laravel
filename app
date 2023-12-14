@@ -28,11 +28,17 @@ if [ "$str" = "laravel:permissions" ]; then
     "
 fi
 
-
 # Instala dependências do php
 if [ "$str" = "composer:install" ]; then
     docker exec -it $container_id /bin/bash -c "
     composer install
+    "
+fi
+
+# Instala dependências do node
+if [ "$str" = "npm:install" ]; then
+    docker exec -it $container_id /bin/bash -c "
+    npm install && npm run build
     "
 fi
 
