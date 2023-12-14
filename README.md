@@ -55,6 +55,12 @@ Abra um novo terminal e instale as dependências do laravel:
 sh ./app composer:install
 ```
 
+instale as dependências do node e faça o build com o comando:
+
+```sh
+sh ./app npm:install
+```
+
 Adicione as permissões necessárias na pasta storage:
 
 ```sh
