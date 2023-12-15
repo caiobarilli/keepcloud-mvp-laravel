@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Members;
-use App\Http\Livewire\CreateMember;
+use App\Livewire\Members;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +29,4 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/dashboard/members', Members::class)->name('members');
-    Route::get('/dashboard/members/create', CreateMember::class)->name('members.create');
 });

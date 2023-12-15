@@ -9,65 +9,39 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 overflow-hidden overflow-x-auto bg-white border-b border-gray-200">
+                    @if ($isEditModalOpen)
+                        @include('members.edit')
+                    @endif
 
-                    <div class="min-w-full align-middle">
-                        <form wire:submit="save">
-                            <label for="name">
-                                name:
-                                <input type="text" id="name" wire:model="name">
-                            </label>
-                            <label for="email">
-                                email:
-                                <input type="text" id="email" wire:model="email">
-                            </label>
+                    <div class="p-4">
 
-                            <button type="submit">Save</button>
-                        </form>
-                    </div>
+                        @if (session()->has('status'))
+                            <div class="bg-green-200 text-green-800 p-2 mb-4">{{ session('status') }}</div>
+                        @endif
 
-                    <div class="mt-5 min-w-full align-middle">
-                        <table class="min-w-full border divide-y divide-gray-200">
+                        <table class="w-full border-collapse border border-gray-400">
                             <thead>
-                            <tr>
-                                <th class="px-6 py-3 text-left bg-gray-50">
-                                    <span class="text-xs font-medium leading-4 tracking-wider text-gray-500 uppercase">Name</span>
-                                </th>
-                                <th class="px-6 py-3 text-left bg-gray-50">
-                                    <span class="text-xs font-medium leading-4 tracking-wider text-gray-500 uppercase">Email</span>
-                                </th>
-                                <th class="px-6 py-3 text-left bg-gray-50">
-                                </th>
-                            </tr>
+                                <tr class="bg-gray-200">
+                                    <th class="p-2">Name</th>
+                                    <th class="p-2">Email</th>
+                                    <th class="p-2">Actions</th>
+                                </tr>
                             </thead>
-
-                            <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-                                @forelse($members as $member)
-                                    <tr class="bg-white">
-                                        <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                            {{ $member->name }}
-                                        </td>
-                                        <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                            {{ $member->email }}
-                                        </td>
-                                        <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                            <button
-                                                type="button"
-                                                wire:click="destroy({{ $member->id }})"
-                                                wire:confirm="Are you sure you want to delete this post?"
-                                            >
-                                                Delete
-                                            </button>
+                            <tbody>
+                                @foreach ($members as $member)
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="p-2">{{ $member->name }}</td>
+                                        <td class="p-2">{{ $member->email }}</td>
+                                        <td class="p-2">
+                                            <button wire:click="openEditModal({{ $member->id }})" class="bg-blue-500 text-black px-2 py-1 rounded">Edit</button>
+                                            <button wire:click="destroy({{ $member->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr class="bg-white">
-                                        <td colspan="3" class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                            No Member found.
-                                        </td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
+
+                        <button wire:click="create" class="mt-4 bg-green-500 text-white px-4 py-2 rounded">Create Member</button>
                     </div>
                 </div>
             </div>
