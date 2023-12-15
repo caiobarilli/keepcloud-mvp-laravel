@@ -3,23 +3,33 @@
 namespace App\Livewire;
 
 use Livewire\Attributes\Layout;
+use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Member;
 
 class Members extends Component
 {
-    public $members;
+    use WithPagination;
+
     public $selectedMember;
-    public $name = '';
-    public $email = '';
-    public $isEditModalOpen = false;
+    public $name, $email;
+    public $query = '';
     public $editMemberId;
+    public $isEditModalOpen = false;
 
     #[Layout('layouts.app')]
     public function render()
     {
-        $this->members = Member::all();
-        return view('members.show');
+        return view('members.show', [
+            'members' => Member::where('name', 'like', '%' . $this->query . '%')
+                ->orWhere('email', 'like', '%' . $this->query . '%')
+                ->paginate(10),
+        ]);
+    }
+
+    public function search()
+    {
+        $this->resetPage();
     }
 
     public function create()
@@ -28,9 +38,22 @@ class Members extends Component
         return view('members.create');
     }
 
-    public function edit($id)
+    public function openEditModal($id)
     {
-        $this->selectedMember = Member::find($id);
+        $this->editMemberId = $id;
+        $this->isEditModalOpen = true;
+    }
+
+    public function closeEditModal()
+    {
+        $this->reset(['editMemberId', 'isEditModalOpen']);
+    }
+
+    public function edit()
+    {
+
+        $this->selectedMember = Member::find($this->editMemberId);
+
         $this->name = $this->selectedMember->name;
         $this->email = $this->selectedMember->email;
 
@@ -51,17 +74,6 @@ class Members extends Component
 
         session()->flash('status', 'Novo registro salvo!');
         return redirect()->to('/dashboard/members');
-    }
-
-    public function openEditModal($id)
-    {
-        $this->editMemberId = $id;
-        $this->isEditModalOpen = true;
-    }
-
-    public function closeEditModal()
-    {
-        $this->reset(['editMemberId', 'isEditModalOpen']);
     }
 
     public function update()

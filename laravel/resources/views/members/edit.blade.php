@@ -3,13 +3,13 @@
 
     <form wire:submit.prevent="update">
         <div class="mb-4">
-            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-            <input type="text" wire:model="name" class="p-2 w-full border rounded">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name: {{ $this->name }}</label>
+            <input id="name" type="text" value="{{ $this->name }}" wire:model="name" class="p-2 w-full border rounded">
         </div>
 
         <div class="mb-4">
             <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-            <input type="email" wire:model="email" class="p-2 w-full border rounded">
+            <input id="email" type="email" value="{{ $this->email }}" wire:model="email" class="p-2 w-full border rounded">
         </div>
 
         <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Update</button>

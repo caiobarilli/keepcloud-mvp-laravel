@@ -9,6 +9,13 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 overflow-hidden overflow-x-auto bg-white border-b border-gray-200">
+                    <button wire:click="create" class="bg-blue-500 text-black px-2 py-1 rounded">Adicionar novo sócio</button>
+
+                    <form wire:submit="search">
+                        <input type="text" wire:model="query">
+                        <button type="submit">Search posts</button>
+                    </form>
+
                     @if ($isEditModalOpen)
                         @include('members.edit')
                     @endif
@@ -28,6 +35,9 @@
                                 </tr>
                             </thead>
                             <tbody>
+
+                                @if ($members->count() > 0)
+
                                 @foreach ($members as $member)
                                     <tr class="hover:bg-gray-100">
                                         <td class="p-2">{{ $member->name }}</td>
@@ -38,10 +48,18 @@
                                         </td>
                                     </tr>
                                 @endforeach
+
+                                {{ $members->links() }}
+
+                                @else
+                                    <tr>
+                                        <td colspan="3" class="p-4">No members found.</td>
+                                    </tr>
+                                @endif
+
                             </tbody>
                         </table>
 
-                        <button wire:click="create" class="mt-4 bg-green-500 text-white px-4 py-2 rounded">Create Member</button>
                     </div>
                 </div>
             </div>
