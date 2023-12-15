@@ -1,5 +1,5 @@
 <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
-    <x-application-logo class="block h-12 w-auto" />
+    <img src="{{ asset('img/Logo.png') }}" alt="Logo">
 
     <h1 class="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
         Seja bem vindo, {{ Auth::user()->name }}!
@@ -15,7 +15,7 @@
             </svg>
 
             <h2 class="ms-3 text-xl font-semibold text-gray-900 dark:text-white">
-                <a href="{{ route('members') }}">
+                <a href="{{ route('members') }}" wire:navigate>
                     Quadro Societário
                 </a>
             </h2>
@@ -26,7 +26,7 @@
         </p>
 
         <p class="mt-4 text-sm">
-            <a href="{{ route('members') }}" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
+            <a href="{{ route('members') }}" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300" wire:navigate>
                 Visualizar todos os sócios
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ms-1 w-5 h-5 fill-indigo-500 dark:fill-indigo-200">
