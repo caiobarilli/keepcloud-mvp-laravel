@@ -19,6 +19,13 @@ Para acessar o documento com as instruções solicitadas,
 
 <br />
 
+## Tarefas realizadas
+
+Para acessar o documento com as instruções realizadas,
+[clique aqui](https://raw.githubusercontent.com/caiobarilli/keepcloud-mvp-laravel/main/docs/Todo.md).
+
+<br />
+
 ## Pré-requisitos
 
 Para começar, certifique-se de ter o [Docker](https://docs.docker.com/) e também o [Docker Compose](https://docs.docker.com/compose/install/) no seu sistema.
