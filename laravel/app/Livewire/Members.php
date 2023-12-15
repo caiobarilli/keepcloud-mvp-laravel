@@ -16,6 +16,7 @@ class Members extends Component
     public $query = '';
     public $editMemberId;
     public $isEditModalOpen = false;
+    public $isCreateModalOpen = false;
 
     #[Layout('layouts.app')]
     public function render()
@@ -48,6 +49,17 @@ class Members extends Component
     public function closeEditModal()
     {
         $this->isEditModalOpen = false;
+    }
+
+    public function openCreateModal()
+    {
+        $this->resetFields();
+        $this->isCreateModalOpen = true;
+    }
+
+    public function closeCreateModal()
+    {
+        $this->isCreateModalOpen = false;
     }
 
     private function prepareEdit()

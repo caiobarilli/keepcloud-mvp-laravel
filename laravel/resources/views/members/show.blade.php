@@ -9,12 +9,16 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 overflow-hidden overflow-x-auto bg-white border-b border-gray-200">
-                    <button wire:click="create" class="bg-blue-500 text-black px-2 py-1 rounded">Adicionar novo sócio</button>
+                    <button wire:click="openCreateModal()" class="bg-blue-500 text-black px-2 py-1 rounded">Adicionar novo sócio</button>
 
                     <form wire:submit="search">
                         <input type="text" wire:model="query">
                         <button type="submit">Search posts</button>
                     </form>
+
+                    @if ($isCreateModalOpen)
+                        @include('members.create')
+                    @endif
 
                     @if ($isEditModalOpen)
                         @include('members.edit')
