@@ -71,7 +71,7 @@ class MembersTest extends TestCase
         $member = Member::factory()->create();
 
         Livewire::test(Members::class)
-            ->set('selectedMember', $member) // Defina o membro completo, não apenas o ID
+            ->set('selectedMember', $member)
             ->set('name', 'John Doe 13')
             ->set('email', 'doe13@email.com')
             ->call('update');
@@ -80,7 +80,23 @@ class MembersTest extends TestCase
             'name' => 'John Doe 13',
             'email' => 'doe13@email.com',
         ]);
+    }
 
+    /** @test */
+    public function it_deletes_member()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $member = Member::factory()->create();
+
+        Livewire::test(Members::class)
+            ->set('selectedMember', $member)
+            ->call('destroy', $member->id);
+
+        $this->assertDatabaseMissing('members', [
+            'id' => $member->id,
+        ]);
     }
 
 }
