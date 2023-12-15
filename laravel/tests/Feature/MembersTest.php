@@ -36,15 +36,13 @@ class MembersTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        // Crie alguns membros para testar a pesquisa
         $members = Member::factory()->count(5)->create();
 
         Livewire::test(Members::class)
-            ->set('query', $members[0]->name) // Configurar a consulta com base no primeiro membro criado
+            ->set('query', $members[0]->name)
             ->call('search')
-            ->assertSee($members[0]->name) // Garantir que o nome do primeiro membro seja exibido após a pesquisa
-            ->assertDontSee($members[1]->name); // Garantir que o nome do segundo membro não seja exibido
-
+            ->assertSee($members[0]->name)
+            ->assertDontSee($members[1]->name);
     }
 
     /** @test */
@@ -62,6 +60,27 @@ class MembersTest extends TestCase
             'name' => 'John Doe',
             'email' => 'john@example.com',
         ]);
+    }
+
+    /** @test */
+    public function it_updates_member()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $member = Member::factory()->create();
+
+        Livewire::test(Members::class)
+            ->set('selectedMember', $member) // Defina o membro completo, não apenas o ID
+            ->set('name', 'John Doe 13')
+            ->set('email', 'doe13@email.com')
+            ->call('update');
+
+        $this->assertDatabaseHas('members', [
+            'name' => 'John Doe 13',
+            'email' => 'doe13@email.com',
+        ]);
+
     }
 
 }
