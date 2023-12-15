@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Layout;
 use Livewire\WithPagination;
 use Livewire\Component;
@@ -34,11 +35,19 @@ class Members extends Component
         $this->resetPage();
     }
 
+    public function setCep()
+    {
+        if (strlen($this->cep) >= 8) {
+            $this->endereco = $this->getAddressByCep($this->cep);
+        }
+    }
+
     public function getAddressByCep($cep)
     {
         $response = Http::get("https://viacep.com.br/ws/{$cep}/json/");
-
-        return $response->json();
+        $addressData = $response->json();
+        $logradouro = $addressData['logradouro'] ?? null;
+        return $logradouro;
     }
 
     public function create()

@@ -10,7 +10,13 @@
 
             <div class="overflow-hidden bg-white dark:bg-gray-800 ">
                     <div class="flex justify-end px-4 py-3 bg-white dark:bg-gray-800 text-end sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md mt-2">
-                        <button wire:click="openCreateModal()" class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150 ">Adicionar novo sócio</button>
+                        <button wire:click="openCreateModal()" class="
+                        inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border
+                        border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs
+                        text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm
+                        hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2
+                        focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25
+                        transition ease-in-out duration-150 ">Adicionar novo sócio</button>
                     </div>
 
                     <div class="flex items-center justify-end px-4 py-3 bg-white dark:bg-gray-800 text-end sm:px-6 sm:rounded-bl-md sm:rounded-br-md">
@@ -56,7 +62,9 @@
                     <div class="p-4">
 
                         @if (session()->has('status'))
-                            <div class="bg-green-200 text-green-800 p-2 mb-4">{{ session('status') }}</div>
+                            <p class="hover:bg-gray-100 text-gray-500 dark:text-gray-400 ">
+                            {{ session('status') }}
+                            </div>
                         @endif
 
                         <table class="w-full border-collapse px-4 py-5 sm:p-6 bg-white dark:bg-gray-800 sm:rounded-lg0">

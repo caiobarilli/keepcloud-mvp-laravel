@@ -7,9 +7,9 @@ dark:hover:bg-gray-700
 dark:focus:ring-offset-gray-800
 ">
     <div class="flex justify-start">
-    <h2 class="text-2xl font-semibold mb-4">
-        Editar sócio
-    </h2>
+        <h2 class="text-2xl font-semibold mb-4">
+            Editar sócio
+        </h2>
     </div>
 
     <form wire:submit="update">
