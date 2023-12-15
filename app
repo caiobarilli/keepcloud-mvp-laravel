@@ -52,6 +52,6 @@ fi
 # Migrações do container
 if [ "$str" = "laravel:migrate" ]; then
     docker exec -it $container_id /bin/bash -c "
-    php artisan migrate
+    php artisan migrate:fresh --seed
     "
 fi

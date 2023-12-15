@@ -41,23 +41,20 @@ class Members extends Component
     public function openEditModal($id)
     {
         $this->editMemberId = $id;
+        $this->prepareEdit();
         $this->isEditModalOpen = true;
     }
 
     public function closeEditModal()
     {
-        $this->reset(['editMemberId', 'isEditModalOpen']);
+        $this->isEditModalOpen = false;
     }
 
-    public function edit()
+    private function prepareEdit()
     {
-
         $this->selectedMember = Member::find($this->editMemberId);
-
         $this->name = $this->selectedMember->name;
         $this->email = $this->selectedMember->email;
-
-        return view('members.edit');
     }
 
     public function save()

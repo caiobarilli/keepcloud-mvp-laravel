@@ -1,17 +1,22 @@
-<div class="p-4">
-    <button wire:click="closeEditModal" class="bg-red-500 text-white px-4 py-2 rounded">Close</button>
+<div>
+    <h2 class="text-2xl font-semibold mb-4">Edit Member</h2>
 
-    <form wire:submit.prevent="update">
+    <form wire:submit="update">
         <div class="mb-4">
-            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name: {{ $this->name }}</label>
-            <input id="name" type="text" value="{{ $this->name }}" wire:model="name" class="p-2 w-full border rounded">
+            <label for="name" class="block text-gray-600 text-sm font-semibold mb-2">Name:</label>
+            <input wire:model="name" type="text" id="name" name="name" class="w-full border p-2">
+            @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
 
         <div class="mb-4">
-            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-            <input id="email" type="email" value="{{ $this->email }}" wire:model="email" class="p-2 w-full border rounded">
+            <label for="email" class="block text-gray-600 text-sm font-semibold mb-2">Email:</label>
+            <input wire:model="email" type="email" id="email" name="email" class="w-full border p-2">
+            @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
 
-        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Update</button>
+        <div class="flex justify-end">
+            <button type="button" wire:click="closeEditModal" class="bg-gray-400 text-white px-4 py-2 rounded mr-2">Cancel</button>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
+        </div>
     </form>
 </div>
