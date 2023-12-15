@@ -36,7 +36,15 @@
                     @endif
 
                     @if ($isEditModalOpen)
+                        <div
+                            class="
+                            flex items-center justify-end px-4 py-3
+                            bg-white dark:bg-gray-800 text-end sm:px-6
+                            sm:rounded-bl-md sm:rounded-br-md
+                            "
+                        >
                         @include('members.edit')
+                        </div>
                     @endif
 
                     <div class="p-2">

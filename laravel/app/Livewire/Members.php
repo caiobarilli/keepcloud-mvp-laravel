@@ -44,6 +44,7 @@ class Members extends Component
         $this->editMemberId = $id;
         $this->prepareEdit();
         $this->isEditModalOpen = true;
+        $this->isCreateModalOpen = false;
     }
 
     public function closeEditModal()
@@ -55,6 +56,7 @@ class Members extends Component
     {
         $this->resetFields();
         $this->isCreateModalOpen = true;
+        $this->isEditModalOpen = false;
     }
 
     public function closeCreateModal()
