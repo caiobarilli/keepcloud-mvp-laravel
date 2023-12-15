@@ -92,7 +92,10 @@
 
                                 @else
                                     <tr>
-                                        <td colspan="3" class="p-4">No members found.</td>
+                                        <td colspan="3" class="p-4">
+                                            <p class="text-gray-800 dark:text-gray-200 leading-tight">
+                                                Nenhum sócio encontrado.
+                                            </p>
                                     </tr>
                                 @endif
                             </tbody>

@@ -13,6 +13,7 @@ class Members extends Component
 
     public $selectedMember;
     public $name, $email;
+    public $cep, $endereco;
     public $query = '';
     public $editMemberId;
     public $isEditModalOpen = false;
@@ -31,6 +32,13 @@ class Members extends Component
     public function search()
     {
         $this->resetPage();
+    }
+
+    public function getAddressByCep($cep)
+    {
+        $response = Http::get("https://viacep.com.br/ws/{$cep}/json/");
+
+        return $response->json();
     }
 
     public function create()
@@ -69,6 +77,8 @@ class Members extends Component
         $this->selectedMember = Member::find($this->editMemberId);
         $this->name = $this->selectedMember->name;
         $this->email = $this->selectedMember->email;
+        $this->cep = $this->selectedMember->cep;
+        $this->endereco = $this->selectedMember->endereco;
     }
 
     public function save()
@@ -76,11 +86,15 @@ class Members extends Component
         $this->validate([
             'name' => 'required',
             'email' => 'required|email',
+            'cep' => 'nullable',
+            'endereco' => 'nullable',
         ]);
 
         Member::create([
             'name' => $this->name,
             'email' => $this->email,
+            'cep' => $this->cep,
+            'endereco' => $this->endereco,
         ]);
 
         session()->flash('status', 'Novo registro salvo!');
@@ -92,11 +106,15 @@ class Members extends Component
         $this->validate([
             'name' => 'required',
             'email' => 'required|email',
+            'cep' => 'nullable',
+            'endereco' => 'nullable',
         ]);
 
         $this->selectedMember->update([
             'name' => $this->name,
             'email' => $this->email,
+            'cep' => $this->cep,
+            'endereco' => $this->endereco,
         ]);
 
         session()->flash('status', 'Registro atualizado!');

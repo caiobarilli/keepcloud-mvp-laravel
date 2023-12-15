@@ -12,6 +12,8 @@ class Member extends Model
     protected $fillable = [
         'name',
         'email',
+        'cep',
+        'endereco',
     ];
 
     public $timestamps = true;
