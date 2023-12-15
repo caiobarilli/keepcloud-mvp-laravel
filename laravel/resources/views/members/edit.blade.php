@@ -1,5 +1,7 @@
 <div>
-    <h2 class="text-2xl font-semibold mb-4">Edit Member</h2>
+    <h2 class="text-2xl font-semibold mb-4">
+        Editar sócio
+    </h2>
 
     <form wire:submit="update">
         <div class="mb-4">
