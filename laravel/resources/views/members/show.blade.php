@@ -30,7 +30,9 @@
                     </div>
 
                     @if ($isCreateModalOpen)
-                        @include('members.create')
+                        <div class="w-full flex justify-end px-4 py-3 bg-white dark:bg-gray-800 text-end sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md mt-2">
+                            @include('members.create')
+                        </div>
                     @endif
 
                     @if ($isEditModalOpen)
@@ -51,10 +53,10 @@
 
                         <table class="w-full border-collapse px-4 py-5 sm:p-6 bg-white dark:bg-gray-800 sm:rounded-lg0">
                             <thead>
-                                <tr class="bg-gray">
-                                    <th class="p-2 text-lg font-medium text-gray-900 dark:text-gray-100 uppercase">Nome</th>
-                                    <th class="p-2 text-lg font-medium text-gray-900 dark:text-gray-100 uppercase">Email</th>
-                                    <th class="p-2 "></th>
+                                <tr class="bg-gray flex">
+                                    <th class=""></th>
+                                    <th class=""></th>
+                                    <th class=""></th>
                                 </tr>
                             </thead>
                             <tbody>
