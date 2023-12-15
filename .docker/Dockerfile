@@ -47,7 +47,14 @@ RUN apk --no-cache add \
     php81-mysqli \
     php81-pdo \
     php81-pdo_mysql \
-    php81-gd
+    php81-gd \
+    php81-sqlite3 \
+    php81-pdo_sqlite
+
+# Installing SQLite
+# RUN apk add --no-cache php-sqlite3 \
+#     php8.1-sqlite3 \
+#     apk update && apk upgrade
 
 # Installing composer
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
