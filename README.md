@@ -86,3 +86,11 @@ sh ./app laravel:migrate
 ```
 
 acesse seu [navegador](http://localhost:8000/) para visualizar o projeto.
+
+## Testes
+
+Para rodar os testes, execute o comando:
+
+```sh
+sh ./app laravel:tests
+```

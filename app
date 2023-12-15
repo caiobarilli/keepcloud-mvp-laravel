@@ -55,3 +55,10 @@ if [ "$str" = "laravel:migrate" ]; then
     php artisan migrate:fresh --seed
     "
 fi
+
+# Roda os testes
+if [ "$str" = "laravel:tests" ]; then
+    docker exec -it $container_id /bin/bash -c "
+    php artisan test
+    "
+fi
