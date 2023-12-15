@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Members;
+use App\Http\Livewire\CreateMember;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +17,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/dashboard/members', Members::class)->name('members');
+    Route::get('/dashboard/members/create', CreateMember::class)->name('members.create');
 });
